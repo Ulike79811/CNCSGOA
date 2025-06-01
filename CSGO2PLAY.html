@@ -18,12 +18,22 @@
             color: #fff;
             margin: 0;
             padding: 0;
+            background-image: url('https://wallpapercave.com/wp/wp1846082.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.85);
+            min-height: 100vh;
         }
         
         .header {
-            background-color: #121212;
+            background-color: rgba(18, 18, 18, 0.8);
             padding: 15px 0;
             border-bottom: 2px solid #333;
+            backdrop-filter: blur(5px);
         }
         
         .nav {
@@ -39,6 +49,7 @@
             font-size: 24px;
             font-weight: bold;
             color: #ff9800;
+            text-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
         }
         
         .user-info {
@@ -48,10 +59,11 @@
         }
         
         .balance {
-            background-color: #333;
+            background-color: rgba(51, 51, 51, 0.7);
             padding: 8px 15px;
             border-radius: 20px;
             font-weight: bold;
+            backdrop-filter: blur(5px);
         }
         
         .recharge-btn {
@@ -67,6 +79,11 @@
         
         .recharge-btn:hover {
             background-color: #ffab40;
+        }
+        
+        .recharge-btn:disabled {
+            background-color: #666;
+            cursor: not-allowed;
         }
         
         .main-content {
@@ -86,10 +103,11 @@
         .case-container {
             flex: 1;
             min-width: 300px;
-            background-color: #252525;
+            background-color: rgba(37, 37, 37, 0.8);
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
         }
         
         .case-title {
@@ -109,9 +127,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: url('武器箱.jpg');
+            background-image: url('https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV09-5lpKKqPrxN7LEmyVQ7MEpiLGUoI_3j1H6_kFqYzv3J4fDcgVrY1CB-ljqyO3q0JK5vp_JyHYwuXAq4H3cmkK2hBEdPw/360fx360f');
             background-size: cover;
             background-position: center;
+            border: 2px solid #ff9800;
         }
         
         .open-buttons {
@@ -137,7 +156,7 @@
         
         .open-btn:hover {
             background-color: #e64a19;
-            transform: scale(1.25);
+            transform: scale(1.05);
         }
         
         .price-tag {
@@ -152,10 +171,11 @@
         
         .items-section {
             flex: 0 0 300px;
-            background-color: #252525;
+            background-color: rgba(37, 37, 37, 0.8);
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
         }
         
         .section-title {
@@ -179,6 +199,11 @@
             overflow: hidden;
             background-size: cover;
             background-position: center;
+            transition: transform 0.3s;
+        }
+        
+        .recent-item:hover {
+            transform: scale(1.05);
         }
         
         .item-badge {
@@ -227,15 +252,17 @@
         }
         
         .item-card {
-            background-color: #333;
+            background-color: rgba(51, 51, 51, 0.8);
             border-radius: 5px;
             overflow: hidden;
             position: relative;
             transition: transform 0.3s;
+            backdrop-filter: blur(5px);
         }
         
         .item-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
         .item-image {
@@ -279,20 +306,29 @@
         /* 边框颜色类 */
         .border-purple {
             border: 1px solid var(--purple-border);
+            box-shadow: 0 0 10px rgba(156, 39, 176, 0.5);
         }
         
         .border-red {
             border: 2px solid var(--red-border);
+            box-shadow: 0 0 10px rgba(244, 67, 54, 0.5);
         }
         
         .border-orange {
             border: 2px solid var(--orange-border);
+            box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
         }
         
         .border-rainbow {
             border: 2px solid;
             border-image: var(--rainbow-border);
             border-image-slice: 1;
+            animation: rainbow-border 5s linear infinite;
+        }
+        
+        @keyframes rainbow-border {
+            0% { border-image-source: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3); }
+            100% { border-image-source: linear-gradient(405deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3); }
         }
         
         /* 开箱动画容器 - 更新为支持五连抽 */
@@ -553,6 +589,63 @@
             gap: 15px;
         }
         
+        /* 物品操作按钮 */
+        .item-actions {
+            display: flex;
+            justify-content: space-around;
+            padding: 5px;
+            background-color: #222;
+        }
+        
+        .action-btn-small {
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            cursor: pointer;
+            border: none;
+            color: white;
+        }
+        
+        .exchange-btn {
+            background-color: #4caf50;
+        }
+        
+        .withdraw-btn {
+            background-color: #2196f3;
+        }
+        
+        .cancel-withdraw-btn {
+            background-color: #ff9800;
+        }
+        
+        .countdown {
+            color: #ff9800;
+            font-size: 12px;
+            text-align: center;
+            padding: 5px;
+        }
+        
+        /* 仓库标签 */
+        .inventory-tabs {
+            display: flex;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #444;
+        }
+        
+        .inventory-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #333;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .inventory-tab.active {
+            background-color: #ff9800;
+            color: #000;
+            font-weight: bold;
+        }
+        
         /* 响应式设计 */
         @media (max-width: 768px) {
             .nav {
@@ -576,47 +669,54 @@
             .result-items, .inventory-items, .history-items {
                 grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             }
+            
+            .item-actions {
+                flex-direction: column;
+                gap: 5px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="nav">
-            <div class="logo">CSGO开箱模拟</div>
-            <div class="user-info">
-                <div class="balance">余额: <span id="user-balance">0</span> 豆</div>
-                <button class="recharge-btn" id="recharge-btn">充值</button>
-                <a href="#" class="action-btn" id="inventory-btn">我的仓库</a>
-                <a href="#" class="action-btn" id="history-btn">历史记录</a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="main-content">
-        <div class="case-section">
-            <div class="case-container">
-                <h2 class="case-title">高级武器箱</h2>
-                <div class="case-image">
-                    <div class="price-tag">128.88 豆/次</div>
+    <div class="overlay">
+        <div class="header">
+            <div class="nav">
+                <div class="logo">CSGO开箱模拟</div>
+                <div class="user-info">
+                    <div class="balance">余额: <span id="user-balance">0</span> 豆</div>
+                    <button class="recharge-btn" id="recharge-btn">充值</button>
+                    <a href="#" class="action-btn" id="inventory-btn">我的仓库</a>
+                    <a href="#" class="action-btn" id="history-btn">历史记录</a>
                 </div>
-                <div class="open-buttons">
-                    <button class="open-btn" id="open-once">开箱一次</button>
-                    <button class="open-btn" id="open-five">开箱五次</button>
-                </div>
-            </div>
-            
-            <div class="items-section">
-                <h3 class="section-title">最近出货</h3>
-                <div class="recent-items" id="recent-items">
-                    <!-- 动态生成最近出货 -->
-                </div>
-                <a href="#" class="action-btn">查看全部</a>
             </div>
         </div>
         
-        <h2 class="section-title">武器箱内容</h2>
-        <div class="items-showcase" id="items-showcase">
-            <!-- 动态生成商品展示 -->
+        <div class="main-content">
+            <div class="case-section">
+                <div class="case-container">
+                    <h2 class="case-title">高级武器箱</h2>
+                    <div class="case-image">
+                        <div class="price-tag">128.88 豆/次</div>
+                    </div>
+                    <div class="open-buttons">
+                        <button class="open-btn" id="open-once">开箱一次</button>
+                        <button class="open-btn" id="open-five">开箱五次</button>
+                    </div>
+                </div>
+                
+                <div class="items-section">
+                    <h3 class="section-title">最近出货</h3>
+                    <div class="recent-items" id="recent-items">
+                        <!-- 动态生成最近出货 -->
+                    </div>
+                    <a href="#" class="action-btn">查看全部</a>
+                </div>
+            </div>
+            
+            <h2 class="section-title">武器箱内容</h2>
+            <div class="items-showcase" id="items-showcase">
+                <!-- 动态生成商品展示 -->
+            </div>
         </div>
     </div>
     
@@ -691,6 +791,11 @@
     <!-- 仓库模态框 -->
     <div class="inventory-modal" id="inventory-modal">
         <div class="inventory-content">
+            <div class="inventory-tabs">
+                <div class="inventory-tab active" data-tab="inventory">我的库存</div>
+                <div class="inventory-tab" data-tab="withdrawing">发货中</div>
+                <div class="inventory-tab" data-tab="withdrawn">已发货</div>
+            </div>
             <h3 class="inventory-title">我的仓库</h3>
             <div class="inventory-items" id="inventory-items-container">
                 <!-- 动态生成仓库物品 -->
@@ -714,36 +819,36 @@
         </div>
     </div>
     
-  <script>
+   <script>
         // 完整的商品数据
            const items = [
-            { name: "蝴蝶刀渐变之色", image: "images/蝴蝶刀渐变之色.jpg", wear: "崭新出场", probability: 0.000205, value: 3228.47, rarity: "隐秘级" },
-            { name: "蝴蝶刀自动化", image: "images/蝴蝶刀自动化.jpg", wear: "略有磨损", probability: 0.208, value: 2128.47, rarity: "隐秘级" },
-            { name: "驾驶手套西装革履", image: "images/驾驶手套西装革履.jpg", wear: "略有磨损", probability: 0.9151, value: 1028.47, rarity: "军需级" },
-            { name: "驾驶手套雪豹", image: "images/驾驶手套雪豹.jpg", wear: "崭新出场", probability: 0.415, value: 828.47, rarity: "军需级" },
-            { name: "锯齿爪刀表面淬火", image: "images/锯齿爪刀表面淬火.jpg", wear: "略有磨损", probability: 0.516, value: 1028.47, rarity: "军需级" },
-            { name: "锯齿爪刀表面淬火", image: "images/锯齿爪刀表面淬火.jpg", wear: "久经沙场", probability: 0.314, value: 841.5, rarity: "军需级" },
-            { name: "骷髅匕首", image: "images/骷髅匕首.jpg", wear: "崭新出场", probability: 0.3115, value: 1261.51, rarity: "军需级" },
-            { name: "流浪者匕首屠夫", image: "images/流浪者匕首屠夫.jpg", wear: "崭新出场", probability: 0.61246, value: 1004.90, rarity: "军需级" },
-            { name: "摩托手套崩", image: "images/摩托手套崩.jpg", wear: "崭新出场", probability: 0.41257, value: 2353.23, rarity: "隐秘级" },
-            { name: "摩托手套崩", image: "images/摩托手套崩.jpg", wear: "略有磨损", probability: 0.32, value: 930.218, rarity: "军需级" },
+            { name: "蝴蝶刀渐变之色", image: "images/蝴蝶刀渐变之色.jpg", wear: "崭新出场", probability: 0.000011205, value: 3228.47, rarity: "隐秘级" },
+            { name: "蝴蝶刀自动化", image: "images/蝴蝶刀自动化.jpg", wear: "略有磨损", probability: 0.0108, value: 2128.47, rarity: "隐秘级" },
+            { name: "驾驶手套西装革履", image: "images/驾驶手套西装革履.jpg", wear: "略有磨损", probability: 0.451, value: 1028.47, rarity: "军需级" },
+            { name: "驾驶手套雪豹", image: "images/驾驶手套雪豹.jpg", wear: "崭新出场", probability: 0.35, value: 828.47, rarity: "军需级" },
+            { name: "锯齿爪刀表面淬火", image: "images/锯齿爪刀表面淬火.jpg", wear: "略有磨损", probability: 0.46, value: 1028.47, rarity: "军需级" },
+            { name: "锯齿爪刀表面淬火", image: "images/锯齿爪刀表面淬火.jpg", wear: "久经沙场", probability: 0.34, value: 841.5, rarity: "军需级" },
+            { name: "骷髅匕首", image: "images/骷髅匕首.jpg", wear: "崭新出场", probability: 0.315, value: 1261.51, rarity: "军需级" },
+            { name: "流浪者匕首屠夫", image: "images/流浪者匕首屠夫.jpg", wear: "崭新出场", probability: 0.6246, value: 1004.90, rarity: "军需级" },
+            { name: "摩托手套崩", image: "images/摩托手套崩.jpg", wear: "崭新出场", probability: 0.05257, value: 2353.23, rarity: "隐秘级" },
+            { name: "摩托手套崩", image: "images/摩托手套崩.jpg", wear: "略有磨损", probability: 0.2, value: 930.218, rarity: "军需级" },
             { name: "咆哮M4", image: "images/咆哮M4.jpg", wear: "崭新出场", probability: 0.0201, value: 10380.237, rarity: "隐秘级" },
             { name: "咆哮M4", image: "images/咆哮M4.jpg", wear: "略有磨损", probability: 0.0208, value: 7133.96, rarity: "隐秘级" },
             { name: "咆哮M4", image: "images/咆哮M4.jpg", wear: "崭新出场", probability: 0.0205, value: 9276.27, rarity: "隐秘级" },
             { name: "咆哮M4", image: "images/咆哮M4.jpg", wear: "略有磨损", probability: 0.00213, value: 2836.32, rarity: "军需级" },
             { name: "运动手套迈阿密风云", image: "images/运动手套迈阿密风云.jpg", wear: "崭新出场", probability: 0.002001, value: 31058.99, rarity: "隐秘级" },
-            { name: "运动手套迈阿密风云", image: "images/运动手套迈阿密风云.jpg", wear: "略有磨损", probability: 0.01121, value: 6139.32, rarity: "隐秘级" },
-            { name: "运动手套潘多拉", image: "images/运动手套潘多拉.jpg", wear: "久经沙场", probability: 0.012015, value: 13938.23, rarity: "隐秘级" },
-            { name: "运动手套潘多拉", image: "images/运动手套潘多拉.jpg", wear: "略有磨损", probability: 0.02001, value: 18883.30, rarity: "隐秘级" },
+            { name: "运动手套迈阿密风云", image: "images/运动手套迈阿密风云.jpg", wear: "略有磨损", probability: 0.001121, value: 6139.32, rarity: "隐秘级" },
+            { name: "运动手套潘多拉", image: "images/运动手套潘多拉.jpg", wear: "久经沙场", probability: 0.0012015, value: 13938.23, rarity: "隐秘级" },
+            { name: "运动手套潘多拉", image: "images/运动手套潘多拉.jpg", wear: "略有磨损", probability: 0.002001, value: 18883.30, rarity: "隐秘级" },
             { name: "运动手套树篱迷宫", image: "images/运动手套树篱迷宫.jpg", wear: "崭新出场", probability: 0.000200011, value: 79110.223, rarity: "隐秘级" },
-            { name: "运动手套树篱迷宫", image: "images/运动手套树篱迷宫.jpg", wear: "略有磨损", probability: 0.002001, value: 27892.38, rarity: "隐秘级" },
-            { name: "运动手套双硒", image: "images/运动手套双硒.jpg", wear: "久经沙场", probability: 0.111116, value: 1178.26, rarity: "军需级" },
-            { name: "运动手套双硒", image: "images/运动手套双硒.jpg", wear: "略有磨损", probability: 0.1214, value: 27892.38, rarity: "隐秘级" },
+            { name: "运动手套树篱迷宫", image: "images/运动手套树篱迷宫.jpg", wear: "略有磨损", probability: 0.0002001, value: 27892.38, rarity: "隐秘级" },
+            { name: "运动手套双硒", image: "images/运动手套双硒.jpg", wear: "久经沙场", probability: 0.00111116, value: 1178.26, rarity: "军需级" },
+            { name: "运动手套双硒", image: "images/运动手套双硒.jpg", wear: "略有磨损", probability: 0.001214, value: 27892.38, rarity: "隐秘级" },
             { name: "爪子刀传说", image: "images/爪子刀传说.jpg", wear: "久经沙场", probability: 0.223, value: 1616.48, rarity: "军需级" },
-            { name: "爪子刀多普勒（红宝石）", image: "images/爪子刀多普勒（红宝石）.jpg", wear: "久经沙场", probability: 0.112001, value: 15901.83, rarity: "隐秘级" },
-            { name: "专业手套渐变之色", image: "images/专业手套渐变之色.jpg", wear: "略有磨损", probability: 0.224, value: 1817.8, rarity: "军需级" },
-            { name: "专业手套深红和服", image: "images/专业手套深红和服.jpg", wear: "略有磨损", probability: 0.02024, value: 12133.27, rarity: "隐秘级" },
-            { name: "专业手套深红之王", image: "images/专业手套深红之王.jpg", wear: "略有磨损", probability: 0.12567, value: 1000.218, rarity: "军需级" },
+            { name: "爪子刀多普勒（红宝石）", image: "images/爪子刀多普勒（红宝石）.jpg", wear: "久经沙场", probability: 0.00112001, value: 15901.83, rarity: "隐秘级" },
+            { name: "专业手套渐变之色", image: "images/专业手套渐变之色.jpg", wear: "略有磨损", probability: 0.01224, value: 1817.8, rarity: "军需级" },
+            { name: "专业手套深红和服", image: "images/专业手套深红和服.jpg", wear: "略有磨损", probability: 0.002024, value: 12133.27, rarity: "隐秘级" },
+            { name: "专业手套深红之网", image: "images/专业手套深红之王.jpg", wear: "略有磨损", probability: 0.012567, value: 1000.218, rarity: "军需级" },
             { name: "AK47暗影破坏者", image: "images/AK47暗影破坏者.jpg", wear: "略有磨损", probability: 16.2, value: 8.38, rarity: "工业级" },
             { name: "蝴蝶刀虎牙", image: "images/蝴蝶刀虎牙.jpg", wear: "崭新出场", probability: 0.2123, value: 1850.232, rarity: "军需级" },
             { name: "AK47黄金藤曼", image: "images/AK47黄金藤曼.jpg", wear: "略有磨损", probability: 0.011112042, value: 4498.76, rarity: "军需级" },
@@ -751,34 +856,38 @@
             { name: "AK47莫言", image: "images/AK47莫言.jpg", wear: "略有磨损", probability: 13.2, value: 8.51, rarity: "工业级" },
             { name: "AK47水栽竹", image: "images/AK47水栽竹.jpg", wear: "崭新出场", probability: 0.02115, value: 5136.20, rarity: "军需级" },
             { name: "AK47野合", image: "images/AK47野合.jpg", wear: "崭新出场", probability: 0.0420012, value: 21741.24, rarity: "隐秘级" },
-            { name: "AWP雷击", image: "images/AWP雷击.jpg", wear: "崭新出场", probability: 0.288888899, value: 876.42, rarity: "军需级" },
+            { name: "AWP雷击", image: "images/AWP雷击.jpg", wear: "崭新出场", probability: 0.488888899, value: 876.42, rarity: "军需级" },
             { name: "AWP巨龙传说", image: "images/AWP巨龙传说.jpg", wear: "崭新出场", probability: 0.0112002, value: 20821.71, rarity: "隐秘级" },
             { name: "AWP永恒之枪", image: "images/AWP永恒之枪.jpg", wear: "崭新出场", probability: 0.0112002, value: 21119.88, rarity: "隐秘级" },
             { name: "M4A1氮化处理", image: "images/M4A1氮化处理.jpg", wear: "崭新出场", probability: 12.2, value: 7.12, rarity: "工业级" },
-            { name: "M4A1伊卡洛斯的陨落", image: "images/M4A1伊卡洛斯的陨落.jpg", wear: "崭新出场", probability: 0.525, value: 817.63, rarity: "军需级" },
+            { name: "M4A1伊卡洛斯的陨落", image: "images/M4A1伊卡洛斯的陨落.jpg", wear: "崭新出场", probability: 0.6725, value: 817.63, rarity: "军需级" },
             { name: "M4A4死寂空间", image: "images/M4A4死寂空间.jpg", wear: "久经沙场", probability: 10.2, value: 17.59, rarity: "工业级" },
-            { name: "M9刺刀多普勒（红宝石）", image: "images/M9刺刀多普勒（红宝石）.jpg", wear: "崭新出场", probability: 0.2001, value: 19504.22, rarity: "隐秘级" },
-            { name: "M9刺刀渐变大理石", image: "images/M9刺刀渐变大理石.jpg", wear: "崭新出场", probability: 0.215, value: 2220.278, rarity: "军需级" },
-            { name: "M9刺刀外表生锈", image: "images/M9刺刀外表生锈.jpg", wear: "战痕累累", probability: 0.225, value: 789.57, rarity: "军需级" },
-            { name: "M9刺刀自动化", image: "images/M9刺刀自动化.jpg", wear: "久经沙场", probability: 0.23, value: 1717.77, rarity: "军需级" },
+            { name: "M9刺刀多普勒（红宝石）", image: "images/M9刺刀多普勒（红宝石）.jpg", wear: "崭新出场", probability: 0.002001, value: 19504.22, rarity: "隐秘级" },
+            { name: "M9刺刀渐变大理石", image: "images/M9刺刀渐变大理石.jpg", wear: "崭新出场", probability: 0.115, value: 2220.278, rarity: "军需级" },
+            { name: "M9刺刀外表生锈", image: "images/M9刺刀外表生锈.jpg", wear: "战痕累累", probability: 0.825, value: 789.57, rarity: "军需级" },
+            { name: "M9刺刀自动化", image: "images/M9刺刀自动化.jpg", wear: "久经沙场", probability: 0.63, value: 1717.77, rarity: "军需级" },
             { name: "USP不锈钢", image: "images/USP不锈钢.jpg", wear: "久经沙场", probability: 10.2, value: 8.59, rarity: "工业级" },
             { name: "USP蓝图", image: "images/USP蓝图.jpg", wear: "久经沙场", probability: 15.2, value: 5.60, rarity: "工业级" },
-            { name: "刺刀", image: "images/刺刀.jpg", wear: "崭新出场", probability: 0.9244, value: 850.282, rarity: "军需级" },
-            { name: "刺刀多普勒", image: "images/刺刀多普勒.jpg", wear: "崭新出场", probability: 0.826, value: 1005.29, rarity: "军需级" },
-            { name: "刺刀虎牙", image: "images/刺刀虎牙.jpg", wear: "崭新出场", probability: 0.928, value: 850.232, rarity: "军需级" },
+            { name: "刺刀", image: "images/刺刀.jpg", wear: "崭新出场", probability: 0.244, value: 850.282, rarity: "军需级" },
+            { name: "刺刀多普勒", image: "images/刺刀多普勒.jpg", wear: "崭新出场", probability: 0.26, value: 1005.29, rarity: "军需级" },
+            { name: "刺刀虎牙", image: "images/刺刀虎牙.jpg", wear: "崭新出场", probability: 0.28, value: 850.232, rarity: "军需级" },
             { name: "格洛克水灵", image: "images/格洛克水灵.jpg", wear: "崭新出场", probability: 10.2, value: 8.73, rarity: "工业级" },
-            { name: "蝴蝶刀都市伪装", image: "images/蝴蝶刀都市伪装.jpg", wear: "久经沙场", probability: 0.625, value: 990.260, rarity: "军需级" },
-            { name: "蝴蝶刀多普勒（红宝石）", image: "images/蝴蝶刀多普勒（红宝石）.jpg", wear: "崭新出场", probability: 0.0002001, value: 20705.43, rarity: "隐秘级" },
-            { name: "蝴蝶刀多普勒", image: "images/蝴蝶刀多普勒.jpg", wear: "崭新出场", probability: 0.052008, value: 5519.62, rarity: "隐秘级" }
+            { name: "蝴蝶刀都市伪装", image: "images/蝴蝶刀都市伪装.jpg", wear: "久经沙场", probability: 0.25, value: 990.260, rarity: "军需级" },
+            { name: "蝴蝶刀多普勒（红宝石）", image: "images/蝴蝶刀多普勒（红宝石）.jpg", wear: "崭新出场", probability: 0.02001, value: 20705.43, rarity: "隐秘级" },
+            { name: "蝴蝶刀多普勒", image: "images/蝴蝶刀多普勒.jpg", wear: "崭新出场", probability: 0.002008, value: 5519.62, rarity: "隐秘级" }
         ];
 
         // 用户数据
-        let userBalance = 10000; // 初始10000豆用于测试
+        let userBalance = 3000; // 初始3000豆用于测试
         let userInventory = [];
+        let withdrawingItems = [];
+        let withdrawnItems = [];
         let rechargeHistory = [];
         let openHistory = [];
         let recentItems = [];
         let selectedRechargeAmount = 0;
+        let lastRechargeTime = 0;
+        let rechargeCooldown = 3600; // 1H冷却时间
 
         // 五连抽相关变量
         let fiveResultItems = [];
@@ -811,6 +920,7 @@
         const historyModal = document.getElementById('history-modal');
         const historyItemsContainer = document.getElementById('history-items-container');
         const closeHistoryBtn = document.getElementById('close-history');
+        const inventoryTabs = document.querySelectorAll('.inventory-tab');
 
         // 初始化页面
         function initPage() {
@@ -824,22 +934,36 @@
                 const data = JSON.parse(savedData);
                 userBalance = data.balance || 0;
                 userInventory = data.inventory || [];
+                withdrawingItems = data.withdrawingItems || [];
+                withdrawnItems = data.withdrawnItems || [];
                 rechargeHistory = data.rechargeHistory || [];
                 openHistory = data.openHistory || [];
                 recentItems = data.recentItems || [];
+                lastRechargeTime = data.lastRechargeTime || 0;
                 
                 updateBalanceDisplay();
                 loadRecentItems();
+                
+                // 检查是否有正在发货的物品
+                checkWithdrawingItems();
             }
             
             // 初始化事件监听
             initEventListeners();
+            
+            // 更新充值按钮状态
+            updateRechargeButtonState();
         }
         
         // 初始化事件监听
         function initEventListeners() {
             // 充值按钮点击
             rechargeBtn.addEventListener('click', () => {
+                if (rechargeBtn.disabled) {
+                    const remainingTime = rechargeCooldown - Math.floor((Date.now() - lastRechargeTime) / 1000);
+                    alert(`充值冷却中，请等待 ${remainingTime} 秒后再试`);
+                    return;
+                }
                 rechargeModal.style.display = 'flex';
                 selectedRechargeAmount = 0;
                 
@@ -872,6 +996,10 @@
                         amount: selectedRechargeAmount,
                         time: new Date().toLocaleString()
                     });
+                    
+                    // 设置充值冷却
+                    lastRechargeTime = Date.now();
+                    updateRechargeButtonState();
                     
                     saveUserData();
                     alert(`成功充值 ${selectedRechargeAmount}豆`);
@@ -932,7 +1060,7 @@
             // 打开仓库
             inventoryBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                showInventory();
+                showInventory('inventory');
             });
             
             // 关闭仓库
@@ -950,6 +1078,33 @@
             closeHistoryBtn.addEventListener('click', () => {
                 historyModal.style.display = 'none';
             });
+            
+            // 仓库标签切换
+            inventoryTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    inventoryTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    showInventory(tab.dataset.tab);
+                });
+            });
+        }
+        
+        // 更新充值按钮状态
+        function updateRechargeButtonState() {
+            const currentTime = Date.now();
+            const elapsedTime = (currentTime - lastRechargeTime) / 1000; // 转换为秒
+            
+            if (elapsedTime < rechargeCooldown) {
+                rechargeBtn.disabled = true;
+                const remainingTime = rechargeCooldown - Math.floor(elapsedTime);
+                rechargeBtn.textContent = `充值冷却(${remainingTime}s)`;
+                
+                // 设置定时器更新按钮状态
+                setTimeout(updateRechargeButtonState, 1000);
+            } else {
+                rechargeBtn.disabled = false;
+                rechargeBtn.textContent = '充值';
+            }
         }
         
         // 更新余额显示
@@ -963,9 +1118,12 @@
             const data = {
                 balance: userBalance,
                 inventory: userInventory,
+                withdrawingItems: withdrawingItems,
+                withdrawnItems: withdrawnItems,
                 rechargeHistory: rechargeHistory,
                 openHistory: openHistory,
-                recentItems: recentItems
+                recentItems: recentItems,
+                lastRechargeTime: lastRechargeTime
             };
             localStorage.setItem('csgoBoxData', JSON.stringify(data));
         }
@@ -1059,7 +1217,7 @@
         
         // 获取随机商品（根据概率）
         function getRandomItem() {
-            const random = Math.random() * 110;
+            const random = Math.random() * 105;
             let cumulativeProbability = 1;
             
             for (const item of items) {
@@ -1122,7 +1280,7 @@
                 const percentage = Math.min(progress / duration, 1);
                 
                 // 缓动函数 - 先快后慢
-                const easing = 0.1 - Math.pow(0.1- percentage, 3);
+                const easing = 0.01 - Math.pow(0.01- percentage, 3);
                 
                 scrollContainer.scrollLeft = easing * targetScrollLeft;
                 
@@ -1132,9 +1290,9 @@
                     // 动画结束
                     setTimeout(() => {
                         // 获取最后一个商品作为获奖商品
-                         const children = scrollContainer.children; // 获取所有子元素
-    const thirdLastItem = children[children.length - 3]; // 倒数第三个
-    const wonItem = JSON.parse(thirdLastItem.dataset.item);
+                        const children = scrollContainer.children; // 获取所有子元素
+                        const thirdLastItem = children[children.length - 3]; // 倒数第三个
+                        const wonItem = JSON.parse(thirdLastItem.dataset.item);
                         
                         // 添加到用户仓库
                         userInventory.push(wonItem);
@@ -1218,9 +1376,9 @@
                 const scrollContainer = document.getElementById(`item-scroll-${i}`);
                 scrollContainer.innerHTML = '';
                 
-                // 预先生成60个随机商品图片
+                // 预先生成200个随机商品图片
                 const scrollItems = [];
-                for (let j = 0; j < 60; j++) {
+                for (let j = 0; j < 200; j++) {
                     const randomItem = getRandomItem();
                     scrollItems.push(randomItem);
                 }
@@ -1305,7 +1463,7 @@
                     }
                     
                     requestAnimationFrame(animate);
-                }, index * 600); // 每个动画间隔600ms
+                }, index * 700); // 每个动画间隔700ms
             });
         }
         
@@ -1355,19 +1513,39 @@
         }
         
         // 显示仓库
-        function showInventory() {
+        function showInventory(tab = 'inventory') {
             inventoryItemsContainer.innerHTML = '';
             
-            if (userInventory.length === 0) {
-                inventoryItemsContainer.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">仓库空空如也，快去开箱吧！</p>';
+            let itemsToShow = [];
+            let title = '';
+            
+            switch(tab) {
+                case 'inventory':
+                    itemsToShow = userInventory;
+                    title = '我的库存';
+                    break;
+                case 'withdrawing':
+                    itemsToShow = withdrawingItems;
+                    title = '发货中';
+                    break;
+                case 'withdrawn':
+                    itemsToShow = withdrawnItems;
+                    title = '已发货';
+                    break;
+            }
+            
+            document.querySelector('.inventory-title').textContent = title;
+            
+            if (itemsToShow.length === 0) {
+                inventoryItemsContainer.innerHTML = `<p style="grid-column: 1/-1; text-align: center;">${getEmptyMessage(tab)}</p>`;
                 inventoryModal.style.display = 'flex';
                 return;
             }
             
             // 按价值从高到低排序
-            const sortedInventory = [...userInventory].sort((a, b) => b.value - a.value);
+            const sortedInventory = [...itemsToShow].sort((a, b) => b.value - a.value);
             
-            sortedInventory.forEach(item => {
+            sortedInventory.forEach((item, index) => {
                 const inventoryItem = document.createElement('div');
                 inventoryItem.className = 'result-item';
                 
@@ -1385,10 +1563,182 @@
                 
                 inventoryItem.appendChild(itemImage);
                 inventoryItem.appendChild(itemName);
+                
+                // 添加操作按钮
+                if (tab === 'inventory') {
+                    const actions = document.createElement('div');
+                    actions.className = 'item-actions';
+                    
+                    const exchangeBtn = document.createElement('button');
+                    exchangeBtn.className = 'action-btn-small exchange-btn';
+                    exchangeBtn.textContent = '置换';
+                    exchangeBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        exchangeItem(index);
+                    });
+                    
+                    const withdrawBtn = document.createElement('button');
+                    withdrawBtn.className = 'action-btn-small withdraw-btn';
+                    withdrawBtn.textContent = '提货';
+                    withdrawBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        startWithdrawItem(index);
+                    });
+                    
+                    actions.appendChild(exchangeBtn);
+                    actions.appendChild(withdrawBtn);
+                    inventoryItem.appendChild(actions);
+                } else if (tab === 'withdrawing') {
+                    const countdown = document.createElement('div');
+                    countdown.className = 'countdown';
+                    countdown.id = `countdown-${index}`;
+                    countdown.textContent = `发货中: ${item.countdown}秒`;
+                    inventoryItem.appendChild(countdown);
+                    
+                    const actions = document.createElement('div');
+                    actions.className = 'item-actions';
+                    
+                    const cancelBtn = document.createElement('button');
+                    cancelBtn.className = 'action-btn-small cancel-withdraw-btn';
+                    cancelBtn.textContent = '取消发货';
+                    cancelBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        cancelWithdrawItem(index);
+                    });
+                    
+                    actions.appendChild(cancelBtn);
+                    inventoryItem.appendChild(actions);
+                }
+                
                 inventoryItemsContainer.appendChild(inventoryItem);
             });
             
             inventoryModal.style.display = 'flex';
+        }
+        
+        // 获取空仓库消息
+        function getEmptyMessage(tab) {
+            switch(tab) {
+                case 'inventory': return '仓库空空如也，快去开箱吧！';
+                case 'withdrawing': return '没有正在发货的物品';
+                case 'withdrawn': return '没有已发货的物品';
+                default: return '暂无物品';
+            }
+        }
+        
+        // 置换物品
+        function exchangeItem(index) {
+            if (index >= 0 && index < userInventory.length) {
+                const item = userInventory[index];
+                if (confirm(`确定要将 ${item.name} 置换为 ${item.value.toFixed(2)} 豆吗？`)) {
+                    userBalance += item.value;
+                    userInventory.splice(index, 1);
+                    updateBalanceDisplay();
+                    showInventory('inventory');
+                    alert(`成功置换 ${item.name}，获得 ${item.value.toFixed(2)} 豆`);
+                }
+            }
+        }
+        
+        // 开始发货物品
+        function startWithdrawItem(index) {
+            if (index >= 0 && index < userInventory.length) {
+                const item = userInventory[index];
+                if (confirm(`确定要发货 ${item.name} 吗？发货需要10分钟处理时间`)) {
+                    const withdrawItem = {...item, countdown: 600}; // 10分钟 = 600秒
+                    
+                    // 从库存移除
+                    userInventory.splice(index, 1);
+                    
+                    // 添加到发货中列表
+                    withdrawingItems.push(withdrawItem);
+                    
+                    // 保存数据
+                    saveUserData();
+                    
+                    // 显示发货中标签
+                    showInventory('withdrawing');
+                    
+                    // 启动倒计时
+                    startWithdrawCountdown(withdrawingItems.length - 1);
+                }
+            }
+        }
+        
+        // 启动发货倒计时
+        function startWithdrawCountdown(index) {
+            if (index >= 0 && index < withdrawingItems.length) {
+                const item = withdrawingItems[index];
+                
+                const timer = setInterval(() => {
+                    item.countdown--;
+                    
+                    // 更新显示
+                    const countdownElement = document.getElementById(`countdown-${index}`);
+                    if (countdownElement) {
+                        countdownElement.textContent = `发货中: ${item.countdown}秒`;
+                    }
+                    
+                    // 检查是否完成
+                    if (item.countdown <= 0) {
+                        clearInterval(timer);
+                        
+                        // 从发货中移除
+                        withdrawingItems.splice(index, 1);
+                        
+                        // 添加到已发货
+                        withdrawnItems.push(item);
+                        
+                        // 保存数据
+                        saveUserData();
+                        
+                        // 刷新显示
+                        if (document.querySelector('.inventory-tab.active').dataset.tab === 'withdrawing') {
+                            showInventory('withdrawing');
+                        }
+                        
+                        alert(`物品 ${item.name} 已发货成功！`);
+                    }
+                }, 1000);
+                
+                // 保存计时器引用
+                item.timer = timer;
+            }
+        }
+        
+        // 取消发货
+        function cancelWithdrawItem(index) {
+            if (index >= 0 && index < withdrawingItems.length) {
+                const item = withdrawingItems[index];
+                if (confirm(`确定要取消 ${item.name} 的发货吗？`)) {
+                    // 清除计时器
+                    if (item.timer) {
+                        clearInterval(item.timer);
+                    }
+                    
+                    // 从发货中移除
+                    withdrawingItems.splice(index, 1);
+                    
+                    // 加回库存
+                    userInventory.push(item);
+                    
+                    // 保存数据
+                    saveUserData();
+                    
+                    // 刷新显示
+                    showInventory('inventory');
+                }
+            }
+        }
+        
+        // 检查正在发货的物品
+        function checkWithdrawingItems() {
+            withdrawingItems.forEach((item, index) => {
+                // 如果物品没有计时器，可能是页面刷新后重新加载的
+                if (!item.timer) {
+                    startWithdrawCountdown(index);
+                }
+            });
         }
         
         // 显示历史记录
