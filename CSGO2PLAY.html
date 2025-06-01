@@ -1059,8 +1059,8 @@
         
         // 获取随机商品（根据概率）
         function getRandomItem() {
-            const random = Math.random() * 126;
-            let cumulativeProbability = 0;
+            const random = Math.random() * 110;
+            let cumulativeProbability = 1;
             
             for (const item of items) {
                 cumulativeProbability += item.probability;
@@ -1090,7 +1090,7 @@
             const scrollContainer = document.getElementById('single-item-scroll');
             scrollContainer.innerHTML = '';
             
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 200; i++) {
                 const scrollItem = document.createElement('div');
                 scrollItem.className = 'scroll-item';
                 
