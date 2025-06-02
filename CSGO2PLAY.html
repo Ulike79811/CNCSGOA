@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.2">
-    <title>CSGO开箱模拟器 - 完整功能版</title>
+    <title>B站：爱折腾瘴渔割 制作的CSGO开箱模拟器</title>
     <style>
         :root {
             --purple-border: #9c27b0;
@@ -18,22 +18,12 @@
             color: #fff;
             margin: 0;
             padding: 0;
-            background-image: url('https://wallpapercave.com/wp/wp1846082.jpg');
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
-        }
-        
-        .overlay {
-            background-color: rgba(0, 0, 0, 0.85);
-            min-height: 100vh;
         }
         
         .header {
-            background-color: rgba(18, 18, 18, 0.8);
+            background-color: #121212;
             padding: 15px 0;
             border-bottom: 2px solid #333;
-            backdrop-filter: blur(5px);
         }
         
         .nav {
@@ -49,7 +39,6 @@
             font-size: 24px;
             font-weight: bold;
             color: #ff9800;
-            text-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
         }
         
         .user-info {
@@ -59,11 +48,10 @@
         }
         
         .balance {
-            background-color: rgba(51, 51, 51, 0.7);
+            background-color: #333;
             padding: 8px 15px;
             border-radius: 20px;
             font-weight: bold;
-            backdrop-filter: blur(5px);
         }
         
         .recharge-btn {
@@ -79,11 +67,6 @@
         
         .recharge-btn:hover {
             background-color: #ffab40;
-        }
-        
-        .recharge-btn:disabled {
-            background-color: #666;
-            cursor: not-allowed;
         }
         
         .main-content {
@@ -103,11 +86,10 @@
         .case-container {
             flex: 1;
             min-width: 300px;
-            background-color: rgba(37, 37, 37, 0.8);
+            background-color: #252525;
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
         }
         
         .case-title {
@@ -127,10 +109,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: url('https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV09-5lpKKqPrxN7LEmyVQ7MEpiLGUoI_3j1H6_kFqYzv3J4fDcgVrY1CB-ljqyO3q0JK5vp_JyHYwuXAq4H3cmkK2hBEdPw/360fx360f');
+            background-image: url('https://via.placeholder.com/800x400/333/666?text=高级武器箱');
             background-size: cover;
             background-position: center;
-            border: 2px solid #ff9800;
         }
         
         .open-buttons {
@@ -156,7 +137,7 @@
         
         .open-btn:hover {
             background-color: #e64a19;
-            transform: scale(1.05);
+            transform: scale(1.25);
         }
         
         .price-tag {
@@ -171,11 +152,10 @@
         
         .items-section {
             flex: 0 0 300px;
-            background-color: rgba(37, 37, 37, 0.8);
+            background-color: #252525;
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
         }
         
         .section-title {
@@ -199,11 +179,6 @@
             overflow: hidden;
             background-size: cover;
             background-position: center;
-            transition: transform 0.3s;
-        }
-        
-        .recent-item:hover {
-            transform: scale(1.05);
         }
         
         .item-badge {
@@ -252,17 +227,15 @@
         }
         
         .item-card {
-            background-color: rgba(51, 51, 51, 0.8);
+            background-color: #333;
             border-radius: 5px;
             overflow: hidden;
             position: relative;
             transition: transform 0.3s;
-            backdrop-filter: blur(5px);
         }
         
         .item-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
         .item-image {
@@ -305,30 +278,21 @@
         
         /* 边框颜色类 */
         .border-purple {
-            border: 1px solid var(--purple-border);
-            box-shadow: 0 0 10px rgba(156, 39, 176, 0.5);
+            border: 2px solid var(--purple-border);
         }
         
         .border-red {
             border: 2px solid var(--red-border);
-            box-shadow: 0 0 10px rgba(244, 67, 54, 0.5);
         }
         
         .border-orange {
             border: 2px solid var(--orange-border);
-            box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
         }
         
         .border-rainbow {
             border: 2px solid;
             border-image: var(--rainbow-border);
             border-image-slice: 1;
-            animation: rainbow-border 5s linear infinite;
-        }
-        
-        @keyframes rainbow-border {
-            0% { border-image-source: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3); }
-            100% { border-image-source: linear-gradient(405deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3); }
         }
         
         /* 开箱动画容器 - 更新为支持五连抽 */
@@ -589,15 +553,39 @@
             gap: 15px;
         }
         
-        /* 物品操作按钮 */
-        .item-actions {
+        /* 新增的提货相关样式 */
+        .inventory-tabs {
             display: flex;
-            justify-content: space-around;
-            padding: 5px;
-            background-color: #222;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #444;
         }
         
-        .action-btn-small {
+        .inventory-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .inventory-tab.active {
+            border-bottom: 3px solid #ff9800;
+            color: #ff9800;
+        }
+        
+        .inventory-tab-content {
+            display: none;
+        }
+        
+        .inventory-tab-content.active {
+            display: block;
+        }
+        
+        .item-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        
+        .item-action-btn {
             padding: 5px 10px;
             border-radius: 3px;
             font-size: 12px;
@@ -606,43 +594,19 @@
             color: white;
         }
         
-        .exchange-btn {
-            background-color: #4caf50;
-        }
-        
-        .withdraw-btn {
+        .redeem-btn {
             background-color: #2196f3;
         }
         
-        .cancel-withdraw-btn {
+        .convert-btn {
             background-color: #ff9800;
         }
         
-        .countdown {
-            color: #ff9800;
-            font-size: 12px;
-            text-align: center;
-            padding: 5px;
-        }
-        
-        /* 仓库标签 */
-        .inventory-tabs {
-            display: flex;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #444;
-        }
-        
-        .inventory-tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            background-color: #333;
-            margin-right: 5px;
-            border-radius: 5px 5px 0 0;
-        }
-        
-        .inventory-tab.active {
-            background-color: #ff9800;
-            color: #000;
+        .bulk-convert-btn {
+            background-color: #f44336;
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
             font-weight: bold;
         }
         
@@ -669,54 +633,47 @@
             .result-items, .inventory-items, .history-items {
                 grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             }
-            
-            .item-actions {
-                flex-direction: column;
-                gap: 5px;
-            }
         }
     </style>
 </head>
 <body>
-    <div class="overlay">
-        <div class="header">
-            <div class="nav">
-                <div class="logo">CSGO开箱模拟</div>
-                <div class="user-info">
-                    <div class="balance">余额: <span id="user-balance">0</span> 豆</div>
-                    <button class="recharge-btn" id="recharge-btn">充值</button>
-                    <a href="#" class="action-btn" id="inventory-btn">我的仓库</a>
-                    <a href="#" class="action-btn" id="history-btn">历史记录</a>
-                </div>
+    <div class="header">
+        <div class="nav">
+            <div class="logo">B站：爱折腾瘴渔割 制作的CSGO开箱模拟</div>
+            <div class="user-info">
+                <div class="balance">余额: <span id="user-balance">0</span> 豆</div>
+                <button class="recharge-btn" id="recharge-btn">充值</button>
+                <a href="#" class="action-btn" id="inventory-btn">我的仓库</a>
+                <a href="#" class="action-btn" id="history-btn">历史记录</a>
             </div>
         </div>
-        
-        <div class="main-content">
-            <div class="case-section">
-                <div class="case-container">
-                    <h2 class="case-title">树篱心跳</h2>
-                    <div class="case-image">
-                        <div class="price-tag">128.88 豆/次</div>
-                    </div>
-                    <div class="open-buttons">
-                        <button class="open-btn" id="open-once">开箱一次</button>
-                        <button class="open-btn" id="open-five">开箱五次</button>
-                    </div>
+    </div>
+    
+    <div class="main-content">
+        <div class="case-section">
+            <div class="case-container">
+                <h2 class="case-title">高级武器箱</h2>
+                <div class="case-image">
+                    <div class="price-tag">128.88 豆/次</div>
                 </div>
-                
-                <div class="items-section">
-                    <h3 class="section-title">最近出货</h3>
-                    <div class="recent-items" id="recent-items">
-                        <!-- 动态生成最近出货 -->
-                    </div>
-                    <a href="#" class="action-btn">查看全部</a>
+                <div class="open-buttons">
+                    <button class="open-btn" id="open-once">开箱一次</button>
+                    <button class="open-btn" id="open-five">开箱五次</button>
                 </div>
             </div>
             
-            <h2 class="section-title">武器箱内容</h2>
-            <div class="items-showcase" id="items-showcase">
-                <!-- 动态生成商品展示 -->
+            <div class="items-section">
+                <h3 class="section-title">最近出货</h3>
+                <div class="recent-items" id="recent-items">
+                    <!-- 动态生成最近出货 -->
+                </div>
+                <a href="#" class="action-btn">查看全部</a>
             </div>
+        </div>
+        
+        <h2 class="section-title">武器箱内容</h2>
+        <div class="items-showcase" id="items-showcase">
+            <!-- 动态生成商品展示 -->
         </div>
     </div>
     
@@ -747,6 +704,7 @@
             </div>
             <div class="modal-buttons">
                 <button class="modal-btn confirm-btn" id="close-single-result">关闭</button>
+                <button class="modal-btn convert-btn" id="convert-item-btn" style="display: none;">置换为豆子</button>
             </div>
         </div>
     </div>
@@ -772,11 +730,11 @@
                     <div class="recharge-amount">1000豆</div>
                     <div class="recharge-price">¥1000</div>
                 </div>
-                <div class="recharge-option" data-amount="5000">
+                <div class="recharge-option" data-amount="3000">
                     <div class="recharge-amount">5000豆</div>
                     <div class="recharge-price">¥5000</div>
                 </div>
-                <div class="recharge-option" data-amount="15000">
+                <div class="recharge-option" data-amount="5000">
                     <div class="recharge-amount">15000豆</div>
                     <div class="recharge-price">¥15000</div>
                 </div>
@@ -791,15 +749,32 @@
     <!-- 仓库模态框 -->
     <div class="inventory-modal" id="inventory-modal">
         <div class="inventory-content">
-            <div class="inventory-tabs">
-                <div class="inventory-tab active" data-tab="inventory">我的库存</div>
-                <div class="inventory-tab" data-tab="withdrawing">发货中</div>
-                <div class="inventory-tab" data-tab="withdrawn">已发货</div>
-            </div>
             <h3 class="inventory-title">我的仓库</h3>
-            <div class="inventory-items" id="inventory-items-container">
-                <!-- 动态生成仓库物品 -->
+            <div class="inventory-tabs">
+                <div class="inventory-tab active" data-tab="inventory">库存物品</div>
+                <div class="inventory-tab" data-tab="redeeming">提货中 (<span id="redeeming-count">0</span>)</div>
+                <div class="inventory-tab" data-tab="redeemed">已提货 (<span id="redeemed-count">0</span>)</div>
             </div>
+            
+            <div class="inventory-tab-content active" id="inventory-tab">
+                <div class="inventory-items" id="inventory-items-container">
+                    <!-- 动态生成仓库物品 -->
+                </div>
+                <button class="bulk-convert-btn" id="bulk-convert-btn">一键分解所有低于1000豆的物品</button>
+            </div>
+            
+            <div class="inventory-tab-content" id="redeeming-tab">
+                <div class="inventory-items" id="redeeming-items-container">
+                    <!-- 动态生成提货中物品 -->
+                </div>
+            </div>
+            
+            <div class="inventory-tab-content" id="redeemed-tab">
+                <div class="inventory-items" id="redeemed-items-container">
+                    <!-- 动态生成已提货物品 -->
+                </div>
+            </div>
+            
             <div class="modal-buttons">
                 <button class="modal-btn confirm-btn" id="close-inventory">关闭</button>
             </div>
@@ -819,29 +794,29 @@
         </div>
     </div>
     
-   <script>
+    <script>
         // 完整的商品数据
-           const items = [
-            { name: "蝴蝶刀渐变之色", image: "images/蝴蝶刀渐变之色.jpg", wear: "崭新出场", probability: 0.000011205, value: 3228.47, rarity: "隐秘级" },
-            { name: "蝴蝶刀自动化", image: "images/蝴蝶刀自动化.jpg", wear: "略有磨损", probability: 0.0108, value: 2128.47, rarity: "隐秘级" },
-            { name: "驾驶手套西装革履", image: "images/驾驶手套西装革履.jpg", wear: "略有磨损", probability: 0.451, value: 1028.47, rarity: "军需级" },
+        const items = [
+            { name: "蝴蝶刀渐变之色", image: "images/蝴蝶刀渐变之色.jpg", wear: "崭新出场", probability: 0.00221205, value: 3228.47, rarity: "隐秘级" },
+            { name: "蝴蝶刀自动化", image: "images/蝴蝶刀自动化.jpg", wear: "略有磨损", probability: 0.00108, value: 2128.47, rarity: "隐秘级" },
+            { name: "驾驶手套西装革履", image: "images/驾驶手套西装革履.jpg", wear: "略有磨损", probability: 0.00151, value: 1028.47, rarity: "军需级" },
             { name: "驾驶手套雪豹", image: "images/驾驶手套雪豹.jpg", wear: "崭新出场", probability: 0.35, value: 828.47, rarity: "军需级" },
             { name: "锯齿爪刀表面淬火", image: "images/锯齿爪刀表面淬火.jpg", wear: "略有磨损", probability: 0.46, value: 1028.47, rarity: "军需级" },
             { name: "锯齿爪刀表面淬火", image: "images/锯齿爪刀表面淬火.jpg", wear: "久经沙场", probability: 0.34, value: 841.5, rarity: "军需级" },
-            { name: "骷髅匕首", image: "images/骷髅匕首.jpg", wear: "崭新出场", probability: 0.315, value: 1261.51, rarity: "军需级" },
-            { name: "流浪者匕首屠夫", image: "images/流浪者匕首屠夫.jpg", wear: "崭新出场", probability: 0.6246, value: 1004.90, rarity: "军需级" },
-            { name: "摩托手套崩", image: "images/摩托手套崩.jpg", wear: "崭新出场", probability: 0.05257, value: 2353.23, rarity: "隐秘级" },
+            { name: "骷髅匕首", image: "images/骷髅匕首.jpg", wear: "崭新出场", probability: 0.115, value: 1261.51, rarity: "军需级" },
+            { name: "流浪者匕首屠夫", image: "images/流浪者匕首屠夫.jpg", wear: "崭新出场", probability: 0.1246, value: 1004.90, rarity: "军需级" },
+            { name: "摩托手套崩", image: "images/摩托手套崩.jpg", wear: "崭新出场", probability: 0.1257, value: 2353.23, rarity: "隐秘级" },
             { name: "摩托手套崩", image: "images/摩托手套崩.jpg", wear: "略有磨损", probability: 0.2, value: 930.218, rarity: "军需级" },
-            { name: "咆哮M4", image: "images/咆哮M4.jpg", wear: "崭新出场", probability: 0.0201, value: 10380.237, rarity: "隐秘级" },
-            { name: "咆哮M4", image: "images/咆哮M4.jpg", wear: "略有磨损", probability: 0.0208, value: 7133.96, rarity: "隐秘级" },
-            { name: "咆哮M4", image: "images/咆哮M4.jpg", wear: "崭新出场", probability: 0.0205, value: 9276.27, rarity: "隐秘级" },
+            { name: "咆哮M4", image: "images/咆哮M4.jpg", wear: "崭新出场", probability: 0.000201, value: 10380.237, rarity: "隐秘级" },
+            { name: "咆哮M4", image: "images/咆哮M4.jpg", wear: "略有磨损", probability: 0.00208, value: 7133.96, rarity: "隐秘级" },
+            { name: "咆哮M4", image: "images/咆哮M4.jpg", wear: "崭新出场", probability: 0.00205, value: 9276.27, rarity: "隐秘级" },
             { name: "咆哮M4", image: "images/咆哮M4.jpg", wear: "略有磨损", probability: 0.00213, value: 2836.32, rarity: "军需级" },
-            { name: "运动手套迈阿密风云", image: "images/运动手套迈阿密风云.jpg", wear: "崭新出场", probability: 0.002001, value: 31058.99, rarity: "隐秘级" },
-            { name: "运动手套迈阿密风云", image: "images/运动手套迈阿密风云.jpg", wear: "略有磨损", probability: 0.001121, value: 6139.32, rarity: "隐秘级" },
+            { name: "运动手套迈阿密风云", image: "images/运动手套迈阿密风云.jpg", wear: "崭新出场", probability: 0.2001, value: 31058.99, rarity: "隐秘级" },
+            { name: "运动手套迈阿密风云", image: "images/运动手套迈阿密风云.jpg", wear: "略有磨损", probability: 0.1121, value: 6139.32, rarity: "隐秘级" },
             { name: "运动手套潘多拉", image: "images/运动手套潘多拉.jpg", wear: "久经沙场", probability: 0.0012015, value: 13938.23, rarity: "隐秘级" },
             { name: "运动手套潘多拉", image: "images/运动手套潘多拉.jpg", wear: "略有磨损", probability: 0.002001, value: 18883.30, rarity: "隐秘级" },
-            { name: "运动手套树篱迷宫", image: "images/运动手套树篱迷宫.jpg", wear: "崭新出场", probability: 0.000200011, value: 79110.223, rarity: "隐秘级" },
-            { name: "运动手套树篱迷宫", image: "images/运动手套树篱迷宫.jpg", wear: "略有磨损", probability: 0.0002001, value: 27892.38, rarity: "隐秘级" },
+            { name: "运动手套树篱迷宫", image: "images/运动手套树篱迷宫.jpg", wear: "崭新出场", probability: 0.0200011, value: 79110.223, rarity: "隐秘级" },
+            { name: "运动手套树篱迷宫", image: "images/运动手套树篱迷宫.jpg", wear: "略有磨损", probability: 0.2001, value: 27892.38, rarity: "隐秘级" },
             { name: "运动手套双硒", image: "images/运动手套双硒.jpg", wear: "久经沙场", probability: 0.00111116, value: 1178.26, rarity: "军需级" },
             { name: "运动手套双硒", image: "images/运动手套双硒.jpg", wear: "略有磨损", probability: 0.001214, value: 27892.38, rarity: "隐秘级" },
             { name: "爪子刀传说", image: "images/爪子刀传说.jpg", wear: "久经沙场", probability: 0.223, value: 1616.48, rarity: "军需级" },
@@ -850,15 +825,15 @@
             { name: "专业手套深红和服", image: "images/专业手套深红和服.jpg", wear: "略有磨损", probability: 0.002024, value: 12133.27, rarity: "隐秘级" },
             { name: "专业手套深红之网", image: "images/专业手套深红之王.jpg", wear: "略有磨损", probability: 0.012567, value: 1000.218, rarity: "军需级" },
             { name: "AK47暗影破坏者", image: "images/AK47暗影破坏者.jpg", wear: "略有磨损", probability: 16.2, value: 8.38, rarity: "工业级" },
-            { name: "蝴蝶刀虎牙", image: "images/蝴蝶刀虎牙.jpg", wear: "崭新出场", probability: 0.2123, value: 1850.232, rarity: "军需级" },
+            { name: "蝴蝶刀虎牙", image: "images/蝴蝶刀虎牙.jpg", wear: "崭新出场", probability: 0.02123, value: 1850.232, rarity: "军需级" },
             { name: "AK47黄金藤曼", image: "images/AK47黄金藤曼.jpg", wear: "略有磨损", probability: 0.011112042, value: 4498.76, rarity: "军需级" },
             { name: "AK47可燃冰", image: "images/AK47可燃冰.jpg", wear: "略有磨损", probability: 12.2, value: 14.49, rarity: "工业级" },
             { name: "AK47莫言", image: "images/AK47莫言.jpg", wear: "略有磨损", probability: 13.2, value: 8.51, rarity: "工业级" },
             { name: "AK47水栽竹", image: "images/AK47水栽竹.jpg", wear: "崭新出场", probability: 0.02115, value: 5136.20, rarity: "军需级" },
             { name: "AK47野合", image: "images/AK47野合.jpg", wear: "崭新出场", probability: 0.0420012, value: 21741.24, rarity: "隐秘级" },
             { name: "AWP雷击", image: "images/AWP雷击.jpg", wear: "崭新出场", probability: 0.488888899, value: 876.42, rarity: "军需级" },
-            { name: "AWP巨龙传说", image: "images/AWP巨龙传说.jpg", wear: "崭新出场", probability: 0.0112002, value: 20821.71, rarity: "隐秘级" },
-            { name: "AWP永恒之枪", image: "images/AWP永恒之枪.jpg", wear: "崭新出场", probability: 0.0112002, value: 21119.88, rarity: "隐秘级" },
+            { name: "AWP巨龙传说", image: "images/AWP巨龙传说.jpg", wear: "崭新出场", probability: 0.00112002, value: 20821.71, rarity: "隐秘级" },
+            { name: "AWP永恒之枪", image: "images/AWP永恒之枪.jpg", wear: "崭新出场", probability: 0.00112002, value: 21119.88, rarity: "隐秘级" },
             { name: "M4A1氮化处理", image: "images/M4A1氮化处理.jpg", wear: "崭新出场", probability: 12.2, value: 7.12, rarity: "工业级" },
             { name: "M4A1伊卡洛斯的陨落", image: "images/M4A1伊卡洛斯的陨落.jpg", wear: "崭新出场", probability: 0.6725, value: 817.63, rarity: "军需级" },
             { name: "M4A4死寂空间", image: "images/M4A4死寂空间.jpg", wear: "久经沙场", probability: 10.2, value: 17.59, rarity: "工业级" },
@@ -873,26 +848,21 @@
             { name: "刺刀虎牙", image: "images/刺刀虎牙.jpg", wear: "崭新出场", probability: 0.28, value: 850.232, rarity: "军需级" },
             { name: "格洛克水灵", image: "images/格洛克水灵.jpg", wear: "崭新出场", probability: 10.2, value: 8.73, rarity: "工业级" },
             { name: "蝴蝶刀都市伪装", image: "images/蝴蝶刀都市伪装.jpg", wear: "久经沙场", probability: 0.25, value: 990.260, rarity: "军需级" },
-            { name: "蝴蝶刀多普勒（红宝石）", image: "images/蝴蝶刀多普勒（红宝石）.jpg", wear: "崭新出场", probability: 0.02001, value: 20705.43, rarity: "隐秘级" },
-            { name: "蝴蝶刀多普勒", image: "images/蝴蝶刀多普勒.jpg", wear: "崭新出场", probability: 0.002008, value: 5519.62, rarity: "隐秘级" }
+            { name: "蝴蝶刀多普勒（红宝石）", image: "images/蝴蝶刀多普勒（红宝石）.jpg", wear: "崭新出场", probability: 0.020001, value: 20705.43, rarity: "隐秘级" },
+            { name: "蝴蝶刀多普勒", image: "images/蝴蝶刀多普勒.jpg", wear: "崭新出场", probability: 0.0002008, value: 5519.62, rarity: "隐秘级" }
         ];
 
         // 用户数据
         let userBalance = 3000; // 初始3000豆用于测试
         let userInventory = [];
-        let withdrawingItems = [];
-        let withdrawnItems = [];
+        let redeemingItems = [];
+        let redeemedItems = [];
         let rechargeHistory = [];
         let openHistory = [];
         let recentItems = [];
         let selectedRechargeAmount = 0;
-        let lastRechargeTime = 0;
-        let rechargeCooldown = 3600; // 1H冷却时间
-
-        // 五连抽相关变量
-        let fiveResultItems = [];
-        let currentFiveOpenCount = 0;
-        let fiveScrollContainers = [];
+        let currentWonItem = null; // 当前中奖商品
+        let redeemTimers = {}; // 提货倒计时计时器
 
         // DOM元素
         const balanceDisplay = document.getElementById('user-balance');
@@ -910,17 +880,24 @@
         const singleResultModal = document.getElementById('single-result-modal');
         const singleResultItemsContainer = document.getElementById('single-result-items');
         const closeSingleResultBtn = document.getElementById('close-single-result');
+        const convertItemBtn = document.getElementById('convert-item-btn');
         const rechargeModal = document.getElementById('recharge-modal');
         const rechargeOptions = document.querySelectorAll('.recharge-option');
         const confirmRechargeBtn = document.getElementById('confirm-recharge');
         const cancelRechargeBtn = document.getElementById('cancel-recharge');
         const inventoryModal = document.getElementById('inventory-modal');
         const inventoryItemsContainer = document.getElementById('inventory-items-container');
+        const redeemingItemsContainer = document.getElementById('redeeming-items-container');
+        const redeemedItemsContainer = document.getElementById('redeemed-items-container');
         const closeInventoryBtn = document.getElementById('close-inventory');
         const historyModal = document.getElementById('history-modal');
         const historyItemsContainer = document.getElementById('history-items-container');
         const closeHistoryBtn = document.getElementById('close-history');
+        const bulkConvertBtn = document.getElementById('bulk-convert-btn');
         const inventoryTabs = document.querySelectorAll('.inventory-tab');
+        const inventoryTabContents = document.querySelectorAll('.inventory-tab-content');
+        const redeemingCount = document.getElementById('redeeming-count');
+        const redeemedCount = document.getElementById('redeemed-count');
 
         // 初始化页面
         function initPage() {
@@ -934,36 +911,31 @@
                 const data = JSON.parse(savedData);
                 userBalance = data.balance || 0;
                 userInventory = data.inventory || [];
-                withdrawingItems = data.withdrawingItems || [];
-                withdrawnItems = data.withdrawnItems || [];
+                redeemingItems = data.redeemingItems || [];
+                redeemedItems = data.redeemedItems || [];
                 rechargeHistory = data.rechargeHistory || [];
                 openHistory = data.openHistory || [];
                 recentItems = data.recentItems || [];
-                lastRechargeTime = data.lastRechargeTime || 0;
                 
                 updateBalanceDisplay();
                 loadRecentItems();
                 
-                // 检查是否有正在发货的物品
-                checkWithdrawingItems();
+                // 恢复提货中的计时器
+                redeemingItems.forEach(item => {
+                    if (item.redeemTimeLeft > 0) {
+                        startRedeemTimer(item.id, item.redeemTimeLeft);
+                    }
+                });
             }
             
             // 初始化事件监听
             initEventListeners();
-            
-            // 更新充值按钮状态
-            updateRechargeButtonState();
         }
         
         // 初始化事件监听
         function initEventListeners() {
             // 充值按钮点击
             rechargeBtn.addEventListener('click', () => {
-                if (rechargeBtn.disabled) {
-                    const remainingTime = rechargeCooldown - Math.floor((Date.now() - lastRechargeTime) / 1000);
-                    alert(`充值冷却中，请等待 ${remainingTime} 秒后再试`);
-                    return;
-                }
                 rechargeModal.style.display = 'flex';
                 selectedRechargeAmount = 0;
                 
@@ -996,10 +968,6 @@
                         amount: selectedRechargeAmount,
                         time: new Date().toLocaleString()
                     });
-                    
-                    // 设置充值冷却
-                    lastRechargeTime = Date.now();
-                    updateRechargeButtonState();
                     
                     saveUserData();
                     alert(`成功充值 ${selectedRechargeAmount}豆`);
@@ -1057,10 +1025,21 @@
                 singleResultModal.style.display = 'none';
             });
             
+            // 置换商品为豆子
+            convertItemBtn.addEventListener('click', () => {
+                if (currentWonItem) {
+                    userBalance += currentWonItem.value;
+                    updateBalanceDisplay();
+                    alert(`成功置换 ${currentWonItem.name} 获得 ${currentWonItem.value.toFixed(2)} 豆`);
+                    singleResultModal.style.display = 'none';
+                    saveUserData();
+                }
+            });
+            
             // 打开仓库
             inventoryBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                showInventory('inventory');
+                showInventory();
             });
             
             // 关闭仓库
@@ -1079,32 +1058,55 @@
                 historyModal.style.display = 'none';
             });
             
+            // 一键分解低价值物品
+            bulkConvertBtn.addEventListener('click', () => {
+                const lowValueItems = userInventory.filter(item => item.value < 1000);
+                if (lowValueItems.length === 0) {
+                    alert('没有低于1000豆的物品可分解');
+                    return;
+                }
+                
+                if (confirm(`确定要分解所有${lowValueItems.length}件低于1000豆的物品吗？`)) {
+                    let totalValue = 0;
+                    lowValueItems.forEach(item => {
+                        totalValue += item.value;
+                    });
+                    
+                    userBalance += totalValue;
+                    userInventory = userInventory.filter(item => item.value >= 1000);
+                    
+                    updateBalanceDisplay();
+                    saveUserData();
+                    showInventory();
+                    alert(`成功分解 ${lowValueItems.length} 件物品，获得 ${totalValue.toFixed(2)} 豆`);
+                }
+            });
+            
             // 仓库标签切换
             inventoryTabs.forEach(tab => {
                 tab.addEventListener('click', () => {
+                    const tabId = tab.dataset.tab;
+                    
+                    // 更新标签状态
                     inventoryTabs.forEach(t => t.classList.remove('active'));
                     tab.classList.add('active');
-                    showInventory(tab.dataset.tab);
+                    
+                    // 更新内容区域
+                    inventoryTabContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === `${tabId}-tab`) {
+                            content.classList.add('active');
+                        }
+                    });
+                    
+                    // 如果需要，加载对应标签的内容
+                    if (tabId === 'redeeming') {
+                        loadRedeemingItems();
+                    } else if (tabId === 'redeemed') {
+                        loadRedeemedItems();
+                    }
                 });
             });
-        }
-        
-        // 更新充值按钮状态
-        function updateRechargeButtonState() {
-            const currentTime = Date.now();
-            const elapsedTime = (currentTime - lastRechargeTime) / 1000; // 转换为秒
-            
-            if (elapsedTime < rechargeCooldown) {
-                rechargeBtn.disabled = true;
-                const remainingTime = rechargeCooldown - Math.floor(elapsedTime);
-                rechargeBtn.textContent = `充值冷却(${remainingTime}s)`;
-                
-                // 设置定时器更新按钮状态
-                setTimeout(updateRechargeButtonState, 1000);
-            } else {
-                rechargeBtn.disabled = false;
-                rechargeBtn.textContent = '充值';
-            }
         }
         
         // 更新余额显示
@@ -1118,12 +1120,11 @@
             const data = {
                 balance: userBalance,
                 inventory: userInventory,
-                withdrawingItems: withdrawingItems,
-                withdrawnItems: withdrawnItems,
+                redeemingItems: redeemingItems,
+                redeemedItems: redeemedItems,
                 rechargeHistory: rechargeHistory,
                 openHistory: openHistory,
-                recentItems: recentItems,
-                lastRechargeTime: lastRechargeTime
+                recentItems: recentItems
             };
             localStorage.setItem('csgoBoxData', JSON.stringify(data));
         }
@@ -1217,8 +1218,8 @@
         
         // 获取随机商品（根据概率）
         function getRandomItem() {
-            const random = Math.random() * 105;
-            let cumulativeProbability = 1;
+            const random = Math.random() * 106;
+            let cumulativeProbability = 10;
             
             for (const item of items) {
                 cumulativeProbability += item.probability;
@@ -1248,24 +1249,32 @@
             const scrollContainer = document.getElementById('single-item-scroll');
             scrollContainer.innerHTML = '';
             
-            for (let i = 0; i < 200; i++) {
-                const scrollItem = document.createElement('div');
-                scrollItem.className = 'scroll-item';
-                
-                // 随机选择一个商品
+            // 预先生成60个随机商品图片
+            const scrollItems = [];
+            for (let j = 0; j < 60; j++) {
                 const randomItem = getRandomItem();
-                scrollItem.style.backgroundImage = `url(${randomItem.image})`;
-                scrollItem.dataset.item = JSON.stringify(randomItem);
-                
-                scrollContainer.appendChild(scrollItem);
+                scrollItems.push(randomItem);
             }
             
+            // 确保最后一个商品是随机决定的获奖商品
+            const wonItem = getRandomItem();
+            scrollItems[scrollItems.length - 3] = wonItem;
+            
+            // 创建滚动元素
+            scrollItems.forEach(item => {
+                const scrollItem = document.createElement('div');
+                scrollItem.className = 'scroll-item';
+                scrollItem.style.backgroundImage = `url(${item.image})`;
+                scrollItem.dataset.item = JSON.stringify(item);
+                scrollContainer.appendChild(scrollItem);
+            });
+            
             // 开始单次抽奖动画
-            startSingleAnimation();
+            startSingleAnimation(wonItem);
         }
         
         // 开始单次抽奖动画
-        function startSingleAnimation() {
+        function startSingleAnimation(wonItem) {
             const scrollContainer = document.getElementById('single-item-scroll');
             const scrollWidth = scrollContainer.scrollWidth;
             const containerWidth = scrollContainer.clientWidth;
@@ -1280,7 +1289,7 @@
                 const percentage = Math.min(progress / duration, 1);
                 
                 // 缓动函数 - 先快后慢
-                const easing = 0.01 - Math.pow(0.01- percentage, 3);
+                const easing = 1 - Math.pow(1 - percentage, 3);
                 
                 scrollContainer.scrollLeft = easing * targetScrollLeft;
                 
@@ -1289,11 +1298,6 @@
                 } else {
                     // 动画结束
                     setTimeout(() => {
-                        // 获取最后一个商品作为获奖商品
-                        const children = scrollContainer.children; // 获取所有子元素
-                        const thirdLastItem = children[children.length - 3]; // 倒数第三个
-                        const wonItem = JSON.parse(thirdLastItem.dataset.item);
-                        
                         // 添加到用户仓库
                         userInventory.push(wonItem);
                         
@@ -1304,7 +1308,7 @@
                             time: new Date().toLocaleString()
                         });
                         
-                        // 如果价值大于1000，添加到最近出货
+                        // 如果价值大于500，添加到最近出货
                         if (wonItem.value > 500) {
                             recentItems.unshift({
                                 name: wonItem.name,
@@ -1332,6 +1336,7 @@
         
         // 显示单次开箱结果
         function showSingleResult(item) {
+            currentWonItem = item;
             const singleResultContainer = document.getElementById('single-result-items');
             singleResultContainer.innerHTML = '';
             
@@ -1353,6 +1358,9 @@
             resultItem.appendChild(itemImage);
             resultItem.appendChild(itemName);
             singleResultContainer.appendChild(resultItem);
+            
+            // 显示置换按钮
+            convertItemBtn.style.display = 'block';
             
             singleResultModal.style.display = 'flex';
         }
@@ -1376,9 +1384,9 @@
                 const scrollContainer = document.getElementById(`item-scroll-${i}`);
                 scrollContainer.innerHTML = '';
                 
-                // 预先生成200个随机商品图片
+                // 预先生成60个随机商品图片
                 const scrollItems = [];
-                for (let j = 0; j < 200; j++) {
+                for (let j = 0; j < 60; j++) {
                     const randomItem = getRandomItem();
                     scrollItems.push(randomItem);
                 }
@@ -1409,7 +1417,7 @@
         
         // 开始五连抽动画
         function startFiveAnimation() {
-            // 依次启动五个动画，每个间隔500ms
+            // 依次启动五个动画，每个间隔300ms
             fiveScrollContainers.forEach((scrollData, index) => {
                 setTimeout(() => {
                     const scrollContainer = scrollData.container;
@@ -1418,7 +1426,7 @@
                     const targetScrollLeft = scrollWidth - containerWidth;
                     
                     let startTime = null;
-                    const duration = 7000 + index * 700; // 每个动画持续时间递增
+                    const duration = 5000 + index * 800; // 每个动画持续时间递增
                     
                     function animate(timestamp) {
                         if (!startTime) startTime = timestamp;
@@ -1463,7 +1471,7 @@
                     }
                     
                     requestAnimationFrame(animate);
-                }, index * 700); // 每个动画间隔700ms
+                }, index * 300); // 每个动画间隔300ms
             });
         }
         
@@ -1502,7 +1510,7 @@
                         time: 0
                     });
                     
-                    if (recentItems.length > 10) {
+                    if (recentItems.length > 8) {
                         recentItems.pop();
                     }
                 }
@@ -1513,37 +1521,17 @@
         }
         
         // 显示仓库
-        function showInventory(tab = 'inventory') {
+        function showInventory() {
             inventoryItemsContainer.innerHTML = '';
             
-            let itemsToShow = [];
-            let title = '';
-            
-            switch(tab) {
-                case 'inventory':
-                    itemsToShow = userInventory;
-                    title = '我的库存';
-                    break;
-                case 'withdrawing':
-                    itemsToShow = withdrawingItems;
-                    title = '发货中';
-                    break;
-                case 'withdrawn':
-                    itemsToShow = withdrawnItems;
-                    title = '已发货';
-                    break;
-            }
-            
-            document.querySelector('.inventory-title').textContent = title;
-            
-            if (itemsToShow.length === 0) {
-                inventoryItemsContainer.innerHTML = `<p style="grid-column: 1/-1; text-align: center;">${getEmptyMessage(tab)}</p>`;
+            if (userInventory.length === 0) {
+                inventoryItemsContainer.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">仓库空空如也，快去开箱吧！</p>';
                 inventoryModal.style.display = 'flex';
                 return;
             }
             
             // 按价值从高到低排序
-            const sortedInventory = [...itemsToShow].sort((a, b) => b.value - a.value);
+            const sortedInventory = [...userInventory].sort((a, b) => b.value - a.value);
             
             sortedInventory.forEach((item, index) => {
                 const inventoryItem = document.createElement('div');
@@ -1561,184 +1549,229 @@
                 itemName.className = 'result-name';
                 itemName.textContent = `${item.name} (${item.wear})`;
                 
+                const itemActions = document.createElement('div');
+                itemActions.className = 'item-actions';
+                
+                const redeemBtn = document.createElement('button');
+                redeemBtn.className = 'item-action-btn redeem-btn';
+                redeemBtn.textContent = '提货';
+                redeemBtn.addEventListener('click', () => {
+                    startRedeemProcess(index);
+                });
+                
+                const convertBtn = document.createElement('button');
+                convertBtn.className = 'item-action-btn convert-btn';
+                convertBtn.textContent = '置换';
+                convertBtn.addEventListener('click', () => {
+                    convertItemToBeans(index);
+                });
+                
+                itemActions.appendChild(redeemBtn);
+                itemActions.appendChild(convertBtn);
+                
                 inventoryItem.appendChild(itemImage);
                 inventoryItem.appendChild(itemName);
-                
-                // 添加操作按钮
-                if (tab === 'inventory') {
-                    const actions = document.createElement('div');
-                    actions.className = 'item-actions';
-                    
-                    const exchangeBtn = document.createElement('button');
-                    exchangeBtn.className = 'action-btn-small exchange-btn';
-                    exchangeBtn.textContent = '置换';
-                    exchangeBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        exchangeItem(index);
-                    });
-                    
-                    const withdrawBtn = document.createElement('button');
-                    withdrawBtn.className = 'action-btn-small withdraw-btn';
-                    withdrawBtn.textContent = '提货';
-                    withdrawBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        startWithdrawItem(index);
-                    });
-                    
-                    actions.appendChild(exchangeBtn);
-                    actions.appendChild(withdrawBtn);
-                    inventoryItem.appendChild(actions);
-                } else if (tab === 'withdrawing') {
-                    const countdown = document.createElement('div');
-                    countdown.className = 'countdown';
-                    countdown.id = `countdown-${index}`;
-                    countdown.textContent = `发货中: ${item.countdown}秒`;
-                    inventoryItem.appendChild(countdown);
-                    
-                    const actions = document.createElement('div');
-                    actions.className = 'item-actions';
-                    
-                    const cancelBtn = document.createElement('button');
-                    cancelBtn.className = 'action-btn-small cancel-withdraw-btn';
-                    cancelBtn.textContent = '取消发货';
-                    cancelBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        cancelWithdrawItem(index);
-                    });
-                    
-                    actions.appendChild(cancelBtn);
-                    inventoryItem.appendChild(actions);
-                }
-                
+                inventoryItem.appendChild(itemActions);
                 inventoryItemsContainer.appendChild(inventoryItem);
             });
+            
+            // 更新提货中数量和已提货数量
+            redeemingCount.textContent = redeemingItems.length;
+            redeemedCount.textContent = redeemedItems.length;
             
             inventoryModal.style.display = 'flex';
         }
         
-        // 获取空仓库消息
-        function getEmptyMessage(tab) {
-            switch(tab) {
-                case 'inventory': return '仓库空空如也，快去开箱吧！';
-                case 'withdrawing': return '没有正在发货的物品';
-                case 'withdrawn': return '没有已发货的物品';
-                default: return '暂无物品';
+        // 加载提货中物品
+        function loadRedeemingItems() {
+            redeemingItemsContainer.innerHTML = '';
+            
+            if (redeemingItems.length === 0) {
+                redeemingItemsContainer.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">没有正在提货中的物品</p>';
+                return;
             }
-        }
-        
-        // 置换物品
-        function exchangeItem(index) {
-            if (index >= 0 && index < userInventory.length) {
-                const item = userInventory[index];
-                if (confirm(`确定要将 ${item.name} 置换为 ${item.value.toFixed(2)} 豆吗？`)) {
-                    userBalance += item.value;
-                    userInventory.splice(index, 1);
-                    updateBalanceDisplay();
-                    showInventory('inventory');
-                    alert(`成功置换 ${item.name}，获得 ${item.value.toFixed(2)} 豆`);
-                }
-            }
-        }
-        
-        // 开始发货物品
-        function startWithdrawItem(index) {
-            if (index >= 0 && index < userInventory.length) {
-                const item = userInventory[index];
-                if (confirm(`确定要发货 ${item.name} 吗？发货需要10分钟处理时间`)) {
-                    const withdrawItem = {...item, countdown: 600}; // 10分钟 = 600秒
-                    
-                    // 从库存移除
-                    userInventory.splice(index, 1);
-                    
-                    // 添加到发货中列表
-                    withdrawingItems.push(withdrawItem);
-                    
-                    // 保存数据
-                    saveUserData();
-                    
-                    // 显示发货中标签
-                    showInventory('withdrawing');
-                    
-                    // 启动倒计时
-                    startWithdrawCountdown(withdrawingItems.length - 1);
-                }
-            }
-        }
-        
-        // 启动发货倒计时
-        function startWithdrawCountdown(index) {
-            if (index >= 0 && index < withdrawingItems.length) {
-                const item = withdrawingItems[index];
+            
+            redeemingItems.forEach((item, index) => {
+                const redeemingItem = document.createElement('div');
+                redeemingItem.className = 'result-item';
                 
-                const timer = setInterval(() => {
-                    item.countdown--;
-                    
-                    // 更新显示
-                    const countdownElement = document.getElementById(`countdown-${index}`);
-                    if (countdownElement) {
-                        countdownElement.textContent = `发货中: ${item.countdown}秒`;
-                    }
-                    
-                    // 检查是否完成
-                    if (item.countdown <= 0) {
-                        clearInterval(timer);
-                        
-                        // 从发货中移除
-                        withdrawingItems.splice(index, 1);
-                        
-                        // 添加到已发货
-                        withdrawnItems.push(item);
-                        
-                        // 保存数据
-                        saveUserData();
-                        
-                        // 刷新显示
-                        if (document.querySelector('.inventory-tab.active').dataset.tab === 'withdrawing') {
-                            showInventory('withdrawing');
-                        }
-                        
-                        alert(`物品 ${item.name} 已发货成功！`);
-                    }
-                }, 1000);
+                const itemImage = document.createElement('div');
+                itemImage.className = 'result-image';
+                itemImage.style.backgroundImage = `url(${item.image})`;
+                itemImage.innerHTML = `
+                    <div class="result-value">${item.value.toFixed(2)} 豆</div>
+                    <div class="item-badge" style="top: 5px; right: 5px;">${item.rarity}</div>
+                `;
                 
-                // 保存计时器引用
-                item.timer = timer;
-            }
-        }
-        
-        // 取消发货
-        function cancelWithdrawItem(index) {
-            if (index >= 0 && index < withdrawingItems.length) {
-                const item = withdrawingItems[index];
-                if (confirm(`确定要取消 ${item.name} 的发货吗？`)) {
-                    // 清除计时器
-                    if (item.timer) {
-                        clearInterval(item.timer);
-                    }
-                    
-                    // 从发货中移除
-                    withdrawingItems.splice(index, 1);
-                    
-                    // 加回库存
-                    userInventory.push(item);
-                    
-                    // 保存数据
-                    saveUserData();
-                    
-                    // 刷新显示
-                    showInventory('inventory');
-                }
-            }
-        }
-        
-        // 检查正在发货的物品
-        function checkWithdrawingItems() {
-            withdrawingItems.forEach((item, index) => {
-                // 如果物品没有计时器，可能是页面刷新后重新加载的
-                if (!item.timer) {
-                    startWithdrawCountdown(index);
-                }
+                const itemName = document.createElement('div');
+                itemName.className = 'result-name';
+                itemName.textContent = `${item.name} (${item.wear})`;
+                
+                const timeLeft = document.createElement('div');
+                timeLeft.className = 'result-name';
+                timeLeft.style.fontSize = '12px';
+                timeLeft.textContent = `剩余时间: ${formatTime(item.redeemTimeLeft)}`;
+                
+                redeemingItem.appendChild(itemImage);
+                redeemingItem.appendChild(itemName);
+                redeemingItem.appendChild(timeLeft);
+                redeemingItemsContainer.appendChild(redeemingItem);
             });
+        }
+        
+        // 加载已提货物品
+        function loadRedeemedItems() {
+            redeemedItemsContainer.innerHTML = '';
+            
+            if (redeemedItems.length === 0) {
+                redeemedItemsContainer.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">没有已提货的物品</p>';
+                return;
+            }
+            
+            redeemedItems.forEach(item => {
+                const redeemedItem = document.createElement('div');
+                redeemedItem.className = 'result-item';
+                
+                const itemImage = document.createElement('div');
+                itemImage.className = 'result-image';
+                itemImage.style.backgroundImage = `url(${item.image})`;
+                itemImage.innerHTML = `
+                    <div class="result-value">${item.value.toFixed(2)} 豆</div>
+                    <div class="item-badge" style="top: 5px; right: 5px;">${item.rarity}</div>
+                `;
+                
+                const itemName = document.createElement('div');
+                itemName.className = 'result-name';
+                itemName.textContent = `${item.name} (${item.wear})`;
+                
+                const redeemTime = document.createElement('div');
+                redeemTime.className = 'result-name';
+                redeemTime.style.fontSize = '12px';
+                redeemTime.textContent = `提货时间: ${item.redeemTime}`;
+                
+                redeemedItem.appendChild(itemImage);
+                redeemedItem.appendChild(itemName);
+                redeemedItem.appendChild(redeemTime);
+                redeemedItemsContainer.appendChild(redeemedItem);
+            });
+        }
+        
+        // 开始提货流程
+        function startRedeemProcess(index) {
+            const item = userInventory[index];
+            if (!item) return;
+            
+            if (confirm(`确定要提货 ${item.name} 吗？提货需要10分钟处理时间`)) {
+                // 从库存中移除
+                userInventory.splice(index, 1);
+                
+                // 添加到提货中列表
+                const redeemItem = {
+                    ...item,
+                    id: Date.now() + Math.random().toString(36).substr(2, 9),
+                    redeemTimeLeft: 600 // 10分钟 = 600秒
+                };
+                
+                redeemingItems.push(redeemItem);
+                
+                // 开始倒计时
+                startRedeemTimer(redeemItem.id, redeemItem.redeemTimeLeft);
+                
+                // 更新UI
+                saveUserData();
+                showInventory();
+                alert('提货申请已提交，请耐心等待处理');
+            }
+        }
+        
+        // 开始提货倒计时
+        function startRedeemTimer(itemId, initialTimeLeft) {
+            // 清除已有的计时器
+            if (redeemTimers[itemId]) {
+                clearInterval(redeemTimers[itemId]);
+            }
+            
+            let timeLeft = initialTimeLeft;
+            
+            // 更新提货中物品的时间
+            const updateRedeemingItem = () => {
+                const itemIndex = redeemingItems.findIndex(item => item.id === itemId);
+                if (itemIndex !== -1) {
+                    redeemingItems[itemIndex].redeemTimeLeft = timeLeft;
+                    saveUserData();
+                    
+                    // 如果倒计时结束
+                    if (timeLeft <= 0) {
+                        completeRedeem(itemId);
+                        clearInterval(redeemTimers[itemId]);
+                        delete redeemTimers[itemId];
+                    }
+                }
+            };
+            
+            // 初始更新
+            updateRedeemingItem();
+            
+            // 设置计时器
+            redeemTimers[itemId] = setInterval(() => {
+                timeLeft--;
+                updateRedeemingItem();
+            }, 1000);
+        }
+        
+        // 完成提货
+        function completeRedeem(itemId) {
+            const itemIndex = redeemingItems.findIndex(item => item.id === itemId);
+            if (itemIndex !== -1) {
+                const item = redeemingItems[itemIndex];
+                
+                // 从提货中移除
+                redeemingItems.splice(itemIndex, 1);
+                
+                // 添加到已提货列表
+                redeemedItems.push({
+                    ...item,
+                    redeemTime: new Date().toLocaleString()
+                });
+                
+                // 更新UI
+                saveUserData();
+                
+                // 如果仓库模态框是打开的，更新显示
+                if (inventoryModal.style.display === 'flex') {
+                    const activeTab = document.querySelector('.inventory-tab.active');
+                    if (activeTab && activeTab.dataset.tab === 'redeeming') {
+                        loadRedeemingItems();
+                    }
+                    
+                    // 更新计数
+                    redeemingCount.textContent = redeemingItems.length;
+                    redeemedCount.textContent = redeemedItems.length;
+                }
+            }
+        }
+        
+        // 格式化时间
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+        
+        // 置换物品为豆子
+        function convertItemToBeans(index) {
+            const item = userInventory[index];
+            if (!item) return;
+            
+            if (confirm(`确定要将 ${item.name} 置换为 ${item.value.toFixed(2)} 豆吗？`)) {
+                userBalance += item.value;
+                userInventory.splice(index, 1);
+                
+                updateBalanceDisplay();
+                saveUserData();
+                showInventory();
+                alert(`成功置换 ${item.name} 获得 ${item.value.toFixed(2)} 豆`);
+            }
         }
         
         // 显示历史记录
@@ -1763,7 +1796,7 @@
                 itemName.className = 'result-name';
                 itemName.textContent = `${record.item}`;
                 itemName.style.fontWeight = 'bold';
-                itemName.style.marginBottom = '50px';
+                itemName.style.marginBottom = '5px';
                 
                 const itemDetails = document.createElement('div');
                 itemDetails.style.display = 'flex';
